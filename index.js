@@ -28,29 +28,33 @@ server.listen(config.webPort, () => {
     console.log(`Dashboard active at http://localhost:${config.webPort}`);
 });
 
-// Bot Setup
-function createBot() {
-    const bot = mineflayer.createBot(config.botArgs);
-
-    bot.once('spawn', () => {
-        console.log('--- Bot Joined Server ---');
-        try { mineflayerViewer(bot, { port: config.viewerPort, firstPerson: true }) } catch (e) {}
-
-        // Start Background Tasks
-        botLogic.startAfkRoutine(bot);
-        botLogic.startDataStream(io, bot);
-
-        // Initialize Socket Handlers
-        io.removeAllListeners(); // Prevent duplicates on reconnect
-        socketHandler(io, bot);
-    });
-
-    bot.on('end', () => {
-        console.log('Disconnected. Reconnecting in 10s...');
-        setTimeout(createBot, 10000);
-    });
+function onBotSpawn() {
+    console.log('--- Bot Joined Server ---');
+    try { mineflayerViewer(bot, { port: config.viewerPort, firstPerson: true }) } catch (e) {}
     
-    bot.on('error', (err) => console.log('Error:', err.message));
+    botLogic.startAfkRoutine(bot);
+    botLogic.startDataStream(io, bot);
+    
+    io.removeAllListeners();
+    socketHandler(io, bot);
+}
+
+function onBotEnd() {
+    console.log('Disconnected. Reconnecting in 10s...');
+    setTimeout(createBot, 10000);
+}
+
+function onError(err) {
+    console.log('Error:', err.message);
+}
+
+function createBot() {
+    bot = mineflayer.createBot(config.botArgs); // Make sure 'bot' is global or accessible
+
+    // Look how clean this part is now!
+    bot.once('spawn', onBotSpawn);
+    bot.on('end', onBotEnd);
+    bot.on('error', onError);
 }
 
 createBot();

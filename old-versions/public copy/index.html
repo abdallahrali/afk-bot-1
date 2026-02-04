@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AFK Bot Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* Specific styles for the layout */
+      body {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+      }
+      iframe {
+        flex: 1;
+        border: none;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h2>AFK BOT</h2>
+      <a href="/chat-page" target="content-frame" class="nav-link active"
+        >Chat</a
+      >
+      <a href="/gps-page" target="content-frame" class="nav-link"
+        >GPS & Stats</a
+      >
+      <a href="/viewer-page" target="content-frame" class="nav-link"
+        >3D Viewer</a
+      >
+      <a href="/controls-page" target="content-frame" class="nav-link"
+        >Controls</a
+      >
+    </nav>
+
+    <iframe name="content-frame" src="/chat-page"></iframe>
+
+    <script>
+      // Simple script to highlight the active link
+      const links = document.querySelectorAll(".nav-link");
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          links.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

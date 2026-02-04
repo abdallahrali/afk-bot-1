@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bot Dashboard - Chat</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body style="background: transparent">
+    <main>
+      <h1>Server Chat</h1>
+      <div id="chat-box"></div>
+      <div class="input-area">
+        <input
+          type="text"
+          id="msgInput"
+          placeholder="Type message..."
+          autocomplete="off"
+        />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

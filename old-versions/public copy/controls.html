@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body style="background: transparent">
+    <main style="text-align: center">
+      <h1>Manual Override</h1>
+      <p>Click the box below to enable <b>WASD + Mouse</b> control.</p>
+      <p>
+        <small>Press <b>ESC</b> to stop controlling.</small>
+      </p>
+
+      <div id="control-zone" oncontextmenu="return false;">
+        Click to Capture Mouse
+      </div>
+
+      <br />
+      <button class="ctrl-btn" onclick="socket.emit('control', 'swing')">
+        Left Click (Swing)
+      </button>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

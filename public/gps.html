@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bot Dashboard - GPS</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body style="background: transparent">
+    <main>
+      <h1>Live Statistics</h1>
+
+      <div class="stats-grid">
+        <div class="card">
+          <h3>Health</h3>
+          <p id="health">--</p>
+        </div>
+        <div class="card">
+          <h3>Food</h3>
+          <p id="food">--</p>
+        </div>
+        <div class="card">
+          <h3>Username</h3>
+          <p id="username">--</p>
+        </div>
+      </div>
+
+      <div class="card" style="text-align: left">
+        <h3>GPS Coordinates</h3>
+        <p id="coords" style="font-family: monospace; font-size: 1.5em">
+          X: -- | Y: -- | Z: --
+        </p>
+        <br />
+        <small style="color: #666">Updates every 1 second</small>
+      </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
